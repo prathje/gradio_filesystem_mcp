@@ -65,10 +65,9 @@ with gr.Blocks() as demo:
 
     gr.Markdown("""
         # Filesystem MCP Server
-
-        This is a simple MCP server based on Gradio that allows you to read and write files to a local directory.
-        The API is a simpler version of https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem .
-        Please note that this code is a proof of concept and not meant for production.
+        This is a simple MCP server based on Gradio that allows you to read and write files to a local directory. Please note that this code is a proof of concept and not meant for production.
+        You can configure whether you want to allow editing the files by setting the environment variable `ALLOW_EDITING`. The files reside in `/app/files`. Using Docker, you can mount external directories as well.
+        The API is a simpler version of https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem . 
     """)
 
     with gr.Tab("Read File"):
