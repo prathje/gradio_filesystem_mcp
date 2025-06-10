@@ -46,7 +46,7 @@ class FilesystemAccess:
         full_path = self._resolve_path(path)
         if not full_path.is_dir():
             raise NotADirectoryError("Path is not a directory.")
-        return  [("[DIR] " if p.is_dir() else "[FILE] ") + p.name for p in full_path.iterdir()]
+        return  [("[D] " if p.is_dir() else "[F] ") + p.name for p in full_path.iterdir()]
 
     def move_file(self, source: str, destination: str):
         src_path = self._resolve_path(source)
@@ -81,10 +81,10 @@ class FilesystemAccess:
         tree = []
         for item in path.iterdir():
             if item.is_dir():
-                tree.append(f"[DIR] {item.name}")
+                tree.append(f"[D] {item.name}")
                 subtree = self._directory_subtree(item.resolve())
                 for line in subtree:
-                    tree.append("  " + line)
+                    tree.append("   " + line)
             else:
-                tree.append(f"[FILE] {item.name}")
+                tree.append(f"[F] {item.name}")
         return tree
