@@ -1,3 +1,4 @@
-# Hello World!
+# Motion Canvas Files
 
-This is just a simple file to showcase the fileaccess MCP server.
+The `docs` directory contains Motion Canvas' documentation including typescript examples.
+The `src` directory holds the source code for the core library.
