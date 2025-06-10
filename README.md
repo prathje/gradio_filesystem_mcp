@@ -11,6 +11,13 @@ tags:
     - mcp-server-track
 ---
 
+
+# Filesystem MCP Server
+
+This is a simple MCP server based on Gradio that allows you to read and write files to a local directory.
+The API is a simpler version of https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem .
+Please note that this code is a proof of concept and not meant for production.
+
 ## Run
 
 ```bash
@@ -25,3 +32,22 @@ docker run -p 7860:7860 -e ALLOW_EDITING=false fs_mcp
 ```
 
 The MCP server will be available under *http://localhost:7860*
+
+
+## Mounting External Files
+
+You can use Docker to mount external directories as well:
+
+
+```bash
+docker build -t fs_mcp .
+docker run -p 7860:7860 -v $LOCAL_DIR:/app/files fs_mcp
+```
+
+If you do not want to allow editing the files, you can use *ALLOW_EDITING=false* and also prevent changes to your local filesystem by making the mount readonly: 
+
+
+```bash
+docker build -t fs_mcp .
+docker run -p 7860:7860 -v $LOCAL_DIR:/app/files:ro -e ALLOW_EDITING=false fs_mcp
+```

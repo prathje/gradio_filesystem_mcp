@@ -62,6 +62,15 @@ def directory_tree(path):
     return safe_exec(fs.directory_tree, path)
 
 with gr.Blocks() as demo:
+
+    gr.Markdown("""
+        # Filesystem MCP Server
+
+        This is a simple MCP server based on Gradio that allows you to read and write files to a local directory.
+        The API is a simpler version of https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem .
+        Please note that this code is a proof of concept and not meant for production.
+    """)
+
     with gr.Tab("Read File"):
         path = gr.Textbox(label="Path", value="index.md")
         output = gr.Textbox(label="File Contents")
