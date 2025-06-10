@@ -68,7 +68,7 @@ with gr.Blocks() as demo:
         This is a simple MCP server based on Gradio that allows you to read and write files to a local directory. Please note that this code is a proof of concept and not meant for production.
         You can configure whether you want to allow editing the files by setting the environment variable `ALLOW_EDITING`. The files reside in `/app/files`. Using Docker, you can mount external directories as well.
         The API is a simpler version of https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem . 
-        Important: The files on the public Hugging Face Space are shared. This means that anyone can read and write to the files.
+        Important: The files on the public Hugging Face Space are shared. This means that anyone can read and write to the files. You can spawn the MCP server locally or duplicate the space.
     """)
 
     with gr.Tab("Read File"):
