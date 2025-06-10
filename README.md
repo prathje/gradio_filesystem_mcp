@@ -6,7 +6,7 @@ colorTo: gray
 sdk: docker
 app_port: 7860
 pinned: true
-short_description: Simple MCP Fileserver to read and write from a local directory.
+short_description: "Simple MCP Fileserver to read and write from a directory."
 tags:
     - mcp-server-track
 ---
