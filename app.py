@@ -22,9 +22,27 @@ def safe_exec(func, *args, **kwargs):
         return f"Error"
 
 def read_file(path):
+    """
+    Read the contents of a file at the given path.
+
+    Args:
+        path (str): The path to the file to read.
+
+    Returns:
+        str: The contents of the file, or an error message if not found.
+    """
     return safe_exec(fs.read_file, path)
 
 def read_multiple_files(paths):
+    """
+    Read the contents of multiple files specified by a comma-separated list of paths.
+
+    Args:
+        paths (str): Comma-separated file paths to read.
+
+    Returns:
+        str: The concatenated contents of all files, or error messages for files that could not be read.
+    """
     path_list = [p.strip() for p in paths.split(',') if p.strip()]
 
     file_contents = []
@@ -43,22 +61,80 @@ def read_multiple_files(paths):
         return f"Error"
 
 def write_file(path, content):
+    """
+    Write content to a file at the given path.
+
+    Args:
+        path (str): The path to the file to write.
+        content (str): The content to write to the file.
+
+    Returns:
+        str: Success message or error message if the write fails.
+    """
     return safe_exec(fs.write_file, path, content) or "File written successfully."
 
 def create_directory(path):
+    """
+    Create a directory at the given path, including any necessary parent directories.
+
+    Args:
+        path (str): The directory path to create.
+
+    Returns:
+        str: Success message or error message if creation fails.
+    """
     return safe_exec(fs.create_directory, path) or "Directory ensured."
 
 def list_directory(path):
+    """
+    List the contents of a directory at the given path.
+
+    Args:
+        path (str): The directory path to list.
+
+    Returns:
+        str: Newline-separated list of directory contents, or error message if listing fails.
+    """
     return '\n'.join(safe_exec(fs.list_directory, path))
 
 def move_file(source, destination):
+    """
+    Move a file from source to destination path.
+
+    Args:
+        source (str): The source file path.
+        destination (str): The destination file path.
+
+    Returns:
+        str: Success message or error message if move fails.
+    """
     return safe_exec(fs.move_file, source, destination) or "Move successful."
 
 def search_files(path, pattern, exclude):
+    """
+    Search for files in a directory matching a pattern, excluding specified patterns.
+
+    Args:
+        path (str): The directory path to search in.
+        pattern (str): The glob pattern to match files.
+        exclude (str): Comma-separated patterns to exclude from results.
+
+    Returns:
+        str: Newline-separated list of matching file paths, or error message if search fails.
+    """
     exclude_list = [e.strip() for e in exclude.split(',') if e.strip()]
     return '\n'.join(safe_exec(fs.search_files, path, pattern, exclude_list))
 
 def directory_tree(path):
+    """
+    Get a tree representation of the directory at the given path.
+
+    Args:
+        path (str): The directory path to show as a tree.
+
+    Returns:
+        str: The directory tree as a string, or error message if operation fails.
+    """
     return safe_exec(fs.directory_tree, path)
 
 with gr.Blocks() as demo:
