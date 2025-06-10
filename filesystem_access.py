@@ -18,6 +18,7 @@ class FilesystemAccess:
             raise PermissionError("Access outside root path is not allowed.")
         return full_path
 
+
     def read_file(self, path: str) -> str:
         full_path = self._resolve_path(path)
         try:
@@ -88,3 +89,19 @@ class FilesystemAccess:
             else:
                 tree.append(f"[F] {item.name}")
         return tree
+
+    def recursive_list(self, path: str) -> str:
+        full_path = self._resolve_path(path)
+        return "\n".join(self._recursive_list(full_path))
+    
+    def _recursive_list(self, path: Path) -> List[str]:
+        recursive_list = []
+        for item in path.iterdir():
+            if item.is_dir():
+                recursive_list.append(f"{item.name}/")
+                sublist = self._recursive_list(item.resolve())
+                for line in sublist:
+                    recursive_list.append(f"{item.name}/" + line)
+            else:
+                recursive_list.append(f"{item.name}")
+        return recursive_list
