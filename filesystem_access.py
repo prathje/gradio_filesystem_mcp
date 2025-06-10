@@ -13,6 +13,9 @@ class FilesystemAccess:
             raise ValueError("Root path must be an existing directory.")
 
     def _resolve_path(self, path: str) -> Path:
+        if path.startswith("/"):
+            path = path[1:] # remove any leading slash
+
         full_path = (self.root / path).resolve()
         if not str(full_path).startswith(str(self.root)):
             raise PermissionError("Access outside root path is not allowed.")
