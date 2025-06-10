@@ -1,5 +1,5 @@
 ---
-title: Gradio Filesystem MCP Server
+title: Motion Canvas Docs MCP Server
 emoji: 📁
 colorFrom: red
 colorTo: gray
