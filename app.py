@@ -137,6 +137,19 @@ def directory_tree(path):
     """
     return safe_exec(fs.directory_tree, path)
 
+def recursive_list(path):
+    """
+    Get a recursive list of the Motion Canvas documentation directory at the given path.
+
+    Args:
+        path (str): The documentation directory path to show as a recursive list.
+
+    Returns:
+        str: The documentation directory recursive list as a string, or error message if operation fails.
+    """
+    return safe_exec(fs.recursive_list, path)
+
+
 with gr.Blocks() as demo:
 
     gr.Markdown("""
@@ -170,6 +183,12 @@ with gr.Blocks() as demo:
         output = gr.Textbox(label="Contents")
         btn = gr.Button("Show Tree")
         btn.click(fn=directory_tree, inputs=path, outputs=output)
+
+    with gr.Tab("Recursive List"):
+        path = gr.Textbox(label="Directory Path", value=".")
+        output = gr.Textbox(label="Contents")
+        btn = gr.Button("Show Recursive List")
+        btn.click(fn=recursive_list, inputs=path, outputs=output)
 
     with gr.Tab("Search Files"):
         path = gr.Textbox(label="Search Directory", value=".")
