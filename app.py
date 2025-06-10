@@ -23,25 +23,25 @@ def safe_exec(func, *args, **kwargs):
 
 def read_file(path):
     """
-    Read the contents of a file at the given path.
+    Read the contents of a Motion Canvas documentation file at the given path.
 
     Args:
-        path (str): The path to the file to read.
+        path (str): The path to the documentation file to read.
 
     Returns:
-        str: The contents of the file, or an error message if not found.
+        str: The contents of the documentation file, or an error message if not found.
     """
     return safe_exec(fs.read_file, path)
 
 def read_multiple_files(paths):
     """
-    Read the contents of multiple files specified by a comma-separated list of paths.
+    Read the contents of multiple Motion Canvas documentation files specified by a comma-separated list of paths.
 
     Args:
-        paths (str): Comma-separated file paths to read.
+        paths (str): Comma-separated documentation file paths to read.
 
     Returns:
-        str: The concatenated contents of all files, or error messages for files that could not be read.
+        str: The concatenated contents of all documentation files, or error messages for files that could not be read.
     """
     path_list = [p.strip() for p in paths.split(',') if p.strip()]
 
@@ -62,11 +62,11 @@ def read_multiple_files(paths):
 
 def write_file(path, content):
     """
-    Write content to a file at the given path.
+    Write content to a Motion Canvas documentation file at the given path.
 
     Args:
-        path (str): The path to the file to write.
-        content (str): The content to write to the file.
+        path (str): The path to the documentation file to write.
+        content (str): The content to write to the documentation file.
 
     Returns:
         str: Success message or error message if the write fails.
@@ -75,10 +75,10 @@ def write_file(path, content):
 
 def create_directory(path):
     """
-    Create a directory at the given path, including any necessary parent directories.
+    Create a directory for Motion Canvas documentation at the given path, including any necessary parent directories.
 
     Args:
-        path (str): The directory path to create.
+        path (str): The documentation directory path to create.
 
     Returns:
         str: Success message or error message if creation fails.
@@ -87,10 +87,10 @@ def create_directory(path):
 
 def list_directory(path):
     """
-    List the contents of a directory at the given path.
+    List the contents of a directory containing Motion Canvas documentation at the given path.
 
     Args:
-        path (str): The directory path to list.
+        path (str): The documentation directory path to list.
 
     Returns:
         str: Newline-separated list of directory contents, or error message if listing fails.
@@ -99,11 +99,11 @@ def list_directory(path):
 
 def move_file(source, destination):
     """
-    Move a file from source to destination path.
+    Move a Motion Canvas documentation file from source to destination path.
 
     Args:
-        source (str): The source file path.
-        destination (str): The destination file path.
+        source (str): The source documentation file path.
+        destination (str): The destination documentation file path.
 
     Returns:
         str: Success message or error message if move fails.
@@ -112,28 +112,28 @@ def move_file(source, destination):
 
 def search_files(path, pattern, exclude):
     """
-    Search for files in a directory matching a pattern, excluding specified patterns.
+    Search for Motion Canvas documentation files in a directory matching a pattern, excluding specified patterns.
 
     Args:
-        path (str): The directory path to search in.
-        pattern (str): The glob pattern to match files.
+        path (str): The documentation directory path to search in.
+        pattern (str): The glob pattern to match documentation files.
         exclude (str): Comma-separated patterns to exclude from results.
 
     Returns:
-        str: Newline-separated list of matching file paths, or error message if search fails.
+        str: Newline-separated list of matching documentation file paths, or error message if search fails.
     """
     exclude_list = [e.strip() for e in exclude.split(',') if e.strip()]
     return '\n'.join(safe_exec(fs.search_files, path, pattern, exclude_list))
 
 def directory_tree(path):
     """
-    Get a tree representation of the directory at the given path.
+    Get a tree representation of the Motion Canvas documentation directory at the given path.
 
     Args:
-        path (str): The directory path to show as a tree.
+        path (str): The documentation directory path to show as a tree.
 
     Returns:
-        str: The directory tree as a string, or error message if operation fails.
+        str: The documentation directory tree as a string, or error message if operation fails.
     """
     return safe_exec(fs.directory_tree, path)
 
@@ -141,7 +141,8 @@ with gr.Blocks() as demo:
 
     gr.Markdown("""
         # Motion Canvas Docs MCP Server
-        This is a simple MCP server based on Gradio that allows you to read doc files for Motion Canvas.
+        This is a simple MCP server based on Gradio that allows you to search and read documentation files for Motion Canvas.
+        All functions and tabs are designed to interact with the Motion Canvas documentation files only.
         It is based on the Gradio Fileserver MCP Server: https://huggingface.co/spaces/prathje/gradio_fileserver_mcp
         The API is a simpler version of https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem
     """)
